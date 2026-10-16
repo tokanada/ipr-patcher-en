@@ -2,7 +2,7 @@ name: Download and patch
 
 on:
   schedule:
-    - cron: "17 1 * * *"
+    - cron: "17 11 * * *"
   workflow_dispatch:
     inputs:
       skip_gate:

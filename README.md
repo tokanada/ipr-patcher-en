@@ -3,7 +3,7 @@
 English patched builds of Idoly Pride, adapted from [CyleAR/ipr-patcher](https://github.com/CyleAR/ipr-patcher).
 Modules come from [tokanada/HoshimiLocalify-en](https://github.com/tokanada/HoshimiLocalify-en) (full and lite).
 
-Runs daily at 01:17 UTC and builds only when the game version or the latest HoshimiLocalify-en release changes.
+Runs daily at 11:17 UTC (3:17 am UTC-8) and builds only when the game version or the latest HoshimiLocalify-en release changes.
 Each release is tagged `IdolyPride_<game version>_<data tag>`. The newest 7 releases are kept, plus the newest one per game version.
 
 - `*_full_embedded.apk` / `*_lite_embedded.apk`: install over the original game (use these for updates).
