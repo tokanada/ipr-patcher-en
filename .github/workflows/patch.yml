@@ -235,8 +235,11 @@ jobs:
       - name: Prune old releases (keep newest 7 + newest of each game version)
         run: |
           set -euo pipefail
-          gh release list --repo "$GITHUB_REPOSITORY" --limit 300 --json tagName,createdAt \
-            --jq '[.[] | select(.tagName | startswith("IdolyPride_"))] | sort_by(.createdAt) | reverse | .[].tagName' > tags.txt
+          # Sort by publishedAt, not createdAt: createdAt is inherited from the tagged
+          # commit, and every release tags the same commit, so it is identical for all
+          # of them (which made the sort a no-op and deleted the newest release).
+          gh release list --repo "$GITHUB_REPOSITORY" --limit 300 --json tagName,publishedAt \
+            --jq '[.[] | select(.tagName | startswith("IdolyPride_"))] | sort_by(.publishedAt) | reverse | .[].tagName' > tags.txt
           declare -A seen
           n=0
           while read -r t; do
@@ -244,7 +247,8 @@ jobs:
             n=$((n + 1))
             rest="${t#IdolyPride_}"
             gv="${rest%%_*}"
-            if [ "$n" -le 7 ] || [ -z "${seen[$gv]:-}" ]; then
+            # Never prune the release this run just published.
+            if [ "$t" = "$TAG" ] || [ "$n" -le 7 ] || [ -z "${seen[$gv]:-}" ]; then
               echo "KEEP   $t"
               seen[$gv]=1
             else
