@@ -51,7 +51,8 @@ jobs:
             *) echo "Latest module release '$module_tag' is not a -data. release" >&2; exit 1 ;;
           esac
           data_tag="${module_tag##*-data.}"
-          release_tag="IdolyPride_${APK_VERSION}_${data_tag}"
+          module_ver="${module_tag%%-data.*}"
+          release_tag="IdolyPride_${APK_VERSION}_${data_tag}_${module_ver}"
           prev_body="$(gh release view --repo "$GITHUB_REPOSITORY" --json body --jq .body 2>/dev/null || true)"
           prev_game="$(printf '%s\n' "$prev_body" | tr -d '\r' | sed -n 's/^game_version: //p' | head -n 1)"
           prev_module="$(printf '%s\n' "$prev_body" | tr -d '\r' | sed -n 's/^module_tag: //p' | head -n 1)"
