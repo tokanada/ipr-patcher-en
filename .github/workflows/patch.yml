@@ -19,7 +19,7 @@ concurrency:
 
 env:
   GAME_ID: game.qualiarts.idolypride
-  MODULE_REPO: tokanada/HoshimiLocalify-en
+  MODULE_REPO: Project-Hoshimi/HoshimiLocalify-en
 
 jobs:
   gate:

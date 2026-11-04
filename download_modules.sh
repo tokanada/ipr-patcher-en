@@ -4,7 +4,7 @@ set -euo pipefail
 
 : "${VARIANT:?VARIANT must be set to full or lite}"
 : "${MODULE_TAG:?MODULE_TAG must be set to a HoshimiLocalify-en release tag}"
-MODULE_REPO="${MODULE_REPO:-tokanada/HoshimiLocalify-en}"
+MODULE_REPO="${MODULE_REPO:-Project-Hoshimi/HoshimiLocalify-en}"
 
 case "$VARIANT" in
   full|lite) ;;
